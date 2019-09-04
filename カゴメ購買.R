@@ -3,25 +3,18 @@ suppressMessages(library(dplyr))
 suppressMessages(library(tidyverse))
 
 
-setwd("/Users/jclee/Dropbox/[0000]マクロミル/DS2回生プログラミングコンテスト資料/DS2回生プログラミングコンテスト資料/07_カゴメ部門(FIX)/分析用データ/消費者購買履歴データ/02_QPRデータ/04_アイテムランキング/変数名変換")
+# setwd("/Users/jclee/Dropbox/[0000]マクロミル/DS2回生プログラミングコンテスト資料/DS2回生プログラミングコンテスト資料/07_カゴメ部門(FIX)/分析用データ/消費者購買履歴データ/02_QPRデータ/04_アイテムランキング/変数名変換")
+
 dir(pattern = "ranking")
-
-filename.list<-dir(pattern = "ranking")[-c(7)]
-
+filename.list <- dir(pattern = "ranking")[-c(7)]
 filename.list
 
 name <- function(i) {
-  read_excel(
-    path = filename.list[i],
-    sheet = "【ﾃｷｽﾄ】",
-    skip =0 
-  ) %>% filter(!is.na(順位))
-  
+  read_excel(path = filename.list[i],
+             sheet = "【ﾃｷｽﾄ】",
+             skip = 0) %>% filter(!is.na(順位))
 }
 
-
-
-grep(pattern = "トマト調味料アイテムランキング",filename.list)
 
 gsub("トマト調味料アイテムランキング","",filename.list) %>%
   gsub("_ranking2_","",.) %>% 
@@ -33,21 +26,22 @@ gsub("トマト調味料アイテムランキング","",filename.list) %>%
   
 
 
-
-
-
-
 separate(filename.list)
 
 name(1)
 
 
+temp <- function(x) {
+ x 
+}
 
-map(1:10, ~name(.x))
+
+
+map(1:10, temp)
 
 
 
-mapply(name, list(1:10))
+map(list(1:10), name)
 
 name(1)
 
