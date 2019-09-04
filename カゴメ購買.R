@@ -4,9 +4,9 @@ suppressMessages(library(tidyverse))
 
 
 setwd("/Users/jclee/Dropbox/[0000]マクロミル/DS2回生プログラミングコンテスト資料/DS2回生プログラミングコンテスト資料/07_カゴメ部門(FIX)/分析用データ/消費者購買履歴データ/02_QPRデータ/04_アイテムランキング/変数名変換")
+dir(pattern = "ranking")
 
-dir()
-filename.list<-dir()[-c(7)]
+filename.list<-dir(pattern = "ranking")[-c(7)]
 
 filename.list
 
@@ -20,6 +20,26 @@ name <- function(i) {
 }
 
 
+
+grep(pattern = "トマト調味料アイテムランキング",filename.list)
+
+gsub("トマト調味料アイテムランキング","",filename.list) %>%
+  gsub("_ranking2_","",.) %>% 
+  gsub("xls","",.) %>% 
+  gsub("\\d{7}","",.) %>% 
+  gsub("\\(|\\)","",.) %>% 
+  gsub("\\.","",.) %>% 
+  gsub("性","性.",.) %>% data.frame(a=.)  
+  
+
+
+
+
+
+
+separate(filename.list)
+
+name(1)
 
 
 
