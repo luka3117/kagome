@@ -8,5 +8,11 @@ suppressMessages(library(tidyverse))
 koubai.address <- getURL(
   "https://raw.githubusercontent.com/luka3117/kagome/master/total.csv"
 )
-read.csv(text = koubai.address) %>% tbl_df()
+koubai<-read.csv(text = koubai.address, row.names = 1) %>% tbl_df()
+
+
+koubai %>% dim()
+koubai %>% colnames()
+koubai %>% summary()
+
 
