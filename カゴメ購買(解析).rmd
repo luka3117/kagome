@@ -1,0 +1,49 @@
+---
+title: "【滋賀大学×マクロミル】購買データ解析"
+subtitle: "滋賀大学"
+author: "滋賀大学"
+date: "最終更新: `r format(Sys.time(), '%Y/%m/%d')`"
+output:
+  html_document:
+   number_section: true
+   toc: true
+   fig_width: 9
+   fig_height: 6
+# output:
+#   html_document:
+#     fig_width: 9
+#     fig_height: 6
+---
+
+
+# loading data from webseite 参考サイト :
+- see : https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository
+-   see : https://stackoverflow.com/questions/14441729/read-a-csv-from-github-into-r
+
+
+# 必要package
+```{r}
+# install.packages("RCurl")
+suppressMessages(library(RCurl))
+suppressMessages(library(tidyverse))
+```
+
+
+# 購買データload : method1
+```{r, eval=F}
+koubai.address <- getURL(
+  "https://raw.githubusercontent.com/luka3117/kagome/master/total.csv"
+)
+koubai<-read.csv(text = koubai.address, row.names = 1) %>% tbl_df()
+koubai
+```
+
+# 購買データload `koubai`: method1
+```{r}
+koubai<-read.csv("total.csv", row.names = 1) %>% tbl_df()
+koubai %>% DT::datatable()
+koubai %>% dim()
+koubai %>% colnames %>% cat()
+koubai %>% select(age) %>% plot()
+plot(koubai$sex)
+```
