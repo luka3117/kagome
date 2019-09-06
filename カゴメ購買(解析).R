@@ -1,5 +1,6 @@
 # see : https://github.com/opetchey/RREEBES/wiki/Reading-data-and-code-from-an-online-github-repository
 # see : https://stackoverflow.com/questions/14441729/read-a-csv-from-github-into-r
+
 setwd("/Users/jclee/Desktop/kagome")
 
 suppressMessages(library(RCurl))
@@ -28,6 +29,8 @@ select(順位,X100人あたり購入金額,購入者あたり購入金額)
 # 購入先データ
 koubai.store<-koubai %>% select(スーパー:その他購入先) %>% round(2)
 
+kagome.sales<-bind_cols(koubai.factor,koubai.numeric) %>% select(-順位) %>%
+  bind_cols(koubai.store, .) %>% select(age, sex,データ種別, カテゴリー大, メーカー, everything()) 
 
 
 # koubai %>% select_if(is.factor) %>% 

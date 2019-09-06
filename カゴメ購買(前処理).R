@@ -5,8 +5,10 @@ suppressMessages(library(dplyr))
 suppressMessages(library(tidyverse))
 
 dir("./購買データ/", pattern = "ranking", full.names = T)
+
 filename.list <-
   dir("./購買データ/", pattern = "ranking", full.names = T)[-c(7)]
+
 filename.list
 
 sex.age.variable <-
